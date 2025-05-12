@@ -34,7 +34,7 @@ if ($result && mysqli_num_rows($result) > 0) {
        <div class="table-responsive">
            <!-- <h4 align="center">Online Users</h4> -->
            <p align="right" ><a href="update_profile.php">Edit Profile</a></p>
-           <p align="right"><img class="img"src="eye.jpg" alt="image"> Hi  <?php echo $_SESSION['fname'] . ' ' . $_SESSION['lname']; ?> - <a href="logout.php? logoutid=<?php echo $_SESSION['email'];?>">Logout</a></p>
+           <p align="right"> Hi  <?php echo $_SESSION['fname'] . ' ' . $_SESSION['lname']; ?> - <a href="logout.php? logoutid=<?php echo $_SESSION['email'];?>">Logout</a></p>
            <div class="chat-container">
            <div id="user_details"></div>
            <div id="user_model_details"></div>
