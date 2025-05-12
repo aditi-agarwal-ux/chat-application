@@ -35,30 +35,45 @@ if ($result && mysqli_num_rows($result) > 0) {
            <!-- <h4 align="center">Online Users</h4> -->
            <p align="right" ><a href="update_profile.php">Edit Profile</a></p>
            <p align="right"><img class="img"src="eye.jpg" alt="image"> Hi  <?php echo $_SESSION['fname'] . ' ' . $_SESSION['lname']; ?> - <a href="logout.php? logoutid=<?php echo $_SESSION['email'];?>">Logout</a></p>
+           <div class="chat-container">
            <div id="user_details"></div>
            <div id="user_model_details"></div>
-       </div>
+           </div>
+        </div>
    </div>
 </body>
 </html>
 <style>
-.img{
-    width:50px;
-    height:50px;
-    /* backround-image:url(img/eye.jpg); */
-    background-size:contain;
-    background-repeat:no-repeat;
-    border-radius:50%;
-}
+.img {
+            width: 50px;
+            height: 50px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+        }
 
-body{
-    
-}
+        .chat-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-top: 20px;
+        }
 
+        #user_details {
+            flex-shrink: 0;
+            min-width: 300px;
+        }
 
+        .user_dialog {
+            position: relative;
+            z-index: 9999;
+        }
 
-
-
+        @media (max-width: 768px) {
+            .chat-container {
+                flex-direction: column;
+            }
+        }
 </style>
 <script>
 $(document).ready(function(){
@@ -103,7 +118,14 @@ $(document).ready(function(){
        make_chat_dialog_box(to_user_id, to_user_name);
        $("#user_dialog_"+to_user_id).dialog({
            autoOpen: false,
-           width: 400
+           height:520,
+           width: 840,
+           position: {
+        my: "left top",
+        at: "right top",
+        of: "#user_details"
+    },
+           
        });
        $('#user_dialog_'+to_user_id).dialog('open');
        $('#chat_message_'+to_user_id).emojioneArea({

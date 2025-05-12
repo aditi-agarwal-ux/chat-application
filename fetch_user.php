@@ -22,12 +22,13 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
 $output = '
-<table class="table table-bordered table-striped">
-<tr>
-    <td>Username</td>
-    <td>Status</td>
-    <td>Action</td>
-</tr>
+<div style="text-align: left; width: fit-content;">
+    <table class="table table-bordered table-striped">
+        <tr>
+            <td>Username</td>
+            <td>Status</td>
+            <td>Action</td>
+        </tr>
 ';
 
 while ($row = mysqli_fetch_assoc($result)) {
@@ -39,15 +40,19 @@ while ($row = mysqli_fetch_assoc($result)) {
         : '<span class="label label-danger">Offline</span>';
 
     $output .= '
-    <tr>
-        <td>' . htmlspecialchars($full_name) . '</td>
-        <td>' . $status_label . '</td>
-        <td><button type="button" class="btn btn-info btn-xs start_chat" data-touserid="' . $row['user_id'] . '" data-tousername="' . htmlspecialchars($row['firstname']) . '">Start Chat</button></td>
-    </tr>
+        <tr>
+            <td>' . htmlspecialchars($full_name) . '</td>
+            <td>' . $status_label . '</td>
+            <td><button type="button" class="btn btn-info btn-xs start_chat" data-touserid="' . $row['user_id'] . '" data-tousername="' . htmlspecialchars($row['firstname']) . '">Start Chat</button></td>
+        </tr>
     ';
 }
 
-$output .= '</table>';
+$output .= '
+    </table>
+</div>
+';
+
 
 echo $output;
 
