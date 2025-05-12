@@ -6,20 +6,6 @@ error_reporting(E_ALL);
 session_start();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if(isset($_SESSION['email']))
 {
  header('location:chat.php');
@@ -27,42 +13,14 @@ if(isset($_SESSION['email']))
 }
 $conn = mysqli_connect("localhost", "new_user", "password", "project_2025") or die("Connection failed");
 
-
-
-
-
-
-
-
 $message = '';
-
-
-
-
-
-
-
 
 if (isset($_POST["login"])) {
 $email = $_POST["email"];
 $password = $_POST["password"];
 
-
-
-
-
-
-
-
 $query = "SELECT * FROM user WHERE email = '$email'";
 $result=mysqli_query($conn,$query);
-
-
-
-
-
-
-
 
 if ($result && mysqli_num_rows($result) > 0) {
 $row = mysqli_fetch_assoc($result);
