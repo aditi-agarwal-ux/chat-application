@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>Chat Registration</title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <style>
+   table {
+   border: 2px solid black;
+     border-collapse: collapse;
+   }
+   td {
+     padding: 8px;
+   }
+   input {
+     width: 200px;
+     height: 30px;
+     font-size: 16px;
+   }
+ </style>
+</head>
+<body>
+   <center>
+ <form method="POST" class="custom-form"   style="margin-top: 60px; ">
+   <table>
+       <th colspan="2"><h2 >Registration Form</h3></th>
+     <tr>
+       <td><label for="fname">First Name:</label>
+           <br>
+           <input type="text" id="fname" name="fname"  title="Only alphabets and numbers allowed" required></td>
+           <td><label for="lname">Last Name:</label>
+            <br>
+        <input type="text" id="lname" name="lname"></td>
+      </tr>
+      <tr >
+        <td colspan="2"><label for="phoneno">Phone Number:</label>
+            <br>
+           
+        <input type="number" id="phone_no" name="phone_no" style="width: 430px;"></td>
+      </tr>
+    
+      <tr >
+        <td colspan="2"><label for="email">Email:</label>
+            <br>
+           
+        <input type="email" id="email" name="email" style="width: 430px;"></td>
+      </tr>
+      <tr >
+        <td colspan="2"><label for="password">password:</label>
+            <br>
+        <input type="password" id="password" name="password" style="width: 430px;">
+       
+   
+    </td>
+     
+    </tr>
+      <tr>
+        <td colspan="2" style="text-align: center;">
+          <button type="submit" style="width: 440px;height: 37px;font-size:15px;">Continue to Chat</button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="text-align: center;">
+           Already signed up?<a href="">Login now</a>
+        </td>
+      </tr>
+    </table>
+</form>
+</center>
+
+
+<script>
+  $('.custom-form').on('submit',function(e){
+      e.preventDefault();
+      $.ajax({
+          url:'insert.php',
+          type:'POST',
+          data:{    fname: $('#fname').val(),
+                    lname: $('#lname').val(),
+                    phone_no: $('#phone_no').val(),
+                    email: $('#email').val(),
+                    password: $('#password').val()},
+          success:function(response) {
+  // "response" is the server's reply (like echo "1" or echo "error")
+  console.log("Server says:", response);
+
+
+  if (response == "1") {
+    window.location.href = "login.php";
+  } else {
+    alert("Registration failed: " + response);
+  }
+       }
+  });
+});
+ 
+</script>
+</body>
+</html>
+
