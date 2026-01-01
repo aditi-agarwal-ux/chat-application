@@ -47,7 +47,7 @@ session_start();
    }
    function update_last_activity()
 {
- $.ajax({
+ $.ajax({git
   url:"update_last_activity.php",
   success:function()
   {
